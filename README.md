@@ -48,19 +48,19 @@ mvn -pl booking-service spring-boot:run
 Совет: можно запустить все модули в отдельных окнах. После старта сервисы зарегистрируются в Eureka (`http://localhost:8761`).
 
 ## Примеры запросов
-1. Регистрация пользователя
+1. Регистрация пользователя:
 ```bash
 curl -X POST http://localhost:8080/auth/register \
   -H 'Content-Type: application/json' \
   -d '{"username":"user1","password":"pass"}'
 ```
-2. Авторизация и получение JWT-токена
+2. Авторизация и получение JWT-токена:
 ```bash
 TOKEN=$(curl -s -X POST http://localhost:8080/auth/login \
   -H 'Content-Type: application/json' \
   -d '{"username":"user1","password":"pass"}' | jq -r .access_token)
 ```
-3. Создание отеля и комнаты (требуется вход под admin)
+3. Создание отеля и комнаты (требуется вход под admin):
 ```bash
 curl -X POST http://localhost:8080/hotels \
   -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' \
@@ -70,11 +70,11 @@ curl -X POST http://localhost:8080/rooms \
   -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' \
   -d '{"number":"101","capacity":2,"available":true}'
 ```
-4. Получение подсказок
+4. Получение подсказок:
 ```bash
 curl -H "Authorization: Bearer $TOKEN" http://localhost:8080/bookings/suggestions
 ```
-5. Создать бронирование
+5. Создать бронирование:
 ```bash
 curl -X POST http://localhost:8080/bookings \
   -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' \
