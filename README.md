@@ -45,8 +45,6 @@ mvn -pl hotel-service spring-boot:run
 mvn -pl booking-service spring-boot:run
 ```
 
-Совет: можно запустить все модули в отдельных окнах. После старта сервисы зарегистрируются в Eureka (`http://localhost:8761`).
-
 ## Примеры запросов
 1. Регистрация пользователя:
 ```bash
